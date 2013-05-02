@@ -1,94 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
+  <!--
 
-    Flexmojos is a set of maven goals to allow maven users to compile, optimize and test Flex SWF, Flex SWC, Air SWF and Air SWC.
-    Copyright (C) 2008-2012  Marvin Froeder <marvin@flexmojos.net>
+    Copyright 2008 Marvin Herman Froeder
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+        http://www.apache.org/licenses/LICENSE-2.0
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>FlexMojosTest</groupId>
-    <artifactId>FlexMojosTest</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>swf</packaging>
+  <groupId>FlexMojosTest</groupId>
+  <artifactId>FlexMojosTest</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>swf</packaging>
 
-    <name>FlexMojosTest Flex</name>
+  <name>FlexMojosTest Flex</name>
 
-    <build>
-        <sourceDirectory>src/main/flex</sourceDirectory>
-        <testSourceDirectory>src/test/flex</testSourceDirectory>
-        <plugins>
-            <plugin>
-                <groupId>net.flexmojos.oss</groupId>
-                <artifactId>flexmojos-maven-plugin</artifactId>
-                <version>6.0.0</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <debug>true</debug>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  <build>
+    <sourceDirectory>src/main/flex</sourceDirectory>
+    <testSourceDirectory>src/test/flex</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.sonatype.flexmojos</groupId>
+        <artifactId>flexmojos-maven-plugin</artifactId>
+        <version>4.0-RC2</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.adobe.flex.framework</groupId>
-            <artifactId>flex-framework</artifactId>
-            <type>pom</type>
-        </dependency>
+  <dependencies>
+    <dependency>
+      <groupId>com.adobe.flex.framework</groupId>
+      <artifactId>flex-framework</artifactId>
+      <version>4.5.1.21328</version>
+      <type>pom</type>
+    </dependency>
 
-        <dependency>
-            <groupId>org.flexunit</groupId>
-            <artifactId>flexunit</artifactId>
-            <version>4.1.0</version>
-            <classifier>flex4</classifier>
-            <type>swc</type>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <dependency>
+      <groupId>com.adobe.flexunit</groupId>
+      <artifactId>flexunit</artifactId>
+      <version>0.85</version>
+      <type>swc</type>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.adobe.flex</groupId>
-                <artifactId>framework</artifactId>
-                <version>4.6.0.23201</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <!-- Repository and PluginRepository section for Flex SDK and compiler dependencies.
-         Note: instead of including this in every POM, you can append it to your user (~/.m2/settings.xml) or global
-            (M2_HOME/conf/settings.xml) settings file.
-      -->
-    <repositories>
-        <repository>
-            <id>flex-mojos-repository</id>
-            <url>http://repository.sonatype.org/content/groups/flexgroup</url>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>flex-mojos-plugin-repository</id>
-            <url>http://repository.sonatype.org/content/groups/flexgroup</url>
-        </pluginRepository>
-    </pluginRepositories>
 </project>

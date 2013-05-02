@@ -1,27 +1,31 @@
 # Описание проекта.
- Попытка автоматизировать сборку flash/flex проектов с использованием maven,
- при помощи плагина flexmojos.
+Попытка автоматизировать сборку flash/flex проектов с использованием maven,
+при помощи плагина flexmojos.
 
 ## Попытка номер раз: net.flexmojos.oss v.6.0.0
- IDEA оказывается знает архетип для net.flexmojos.oss v.6.0.0. Стандартная maven-генерация - результат не билдится.
- Получаем 4 ошибки:
- [ERROR]   The project FlexMojosTest:FlexMojosTest:1.0-SNAPSHOT (D:\Projets\FlexMojosTest\pom.xml) has 4 errors
- [ERROR]     Unresolveable build extension: Plugin net.flexmojos.oss:flexmojos-maven-plugin:6.0.0 or one of its dependencies could not be resolved: Failed to collect dependencies for net.flexmojos.oss:flexmojos-maven-plugin:jar:6.0.0 (): Failed to read artifact descriptor for net.flexmojos.oss:flexmojos-maven-plugin:jar:6.0.0: Failure to find com.adobe.flex:framework:pom:4.6.0.23201 in http://repository.sonatype.org/content/groups/flexgroup was cached in the local repository, resolution will not be reattempted until the update interval of flex-mojos-plugin-repository has elapsed or updates are forced -> [Help 2]
- [ERROR]     Unknown packaging: swf @ line 28, column 16
- [ERROR]     Non-resolvable import POM: Failure to find com.adobe.flex:framework:pom:4.6.0.23201 in http://repository.sonatype.org/content/groups/flexgroup was cached in the local repository, resolution will not be reattempted until the update interval of flex-mojos-repository has elapsed or updates are forced @ line 67, column 25 -> [Help 3]
- [ERROR]     'dependencies.dependency.version' for com.adobe.flex.framework:flex-framework:pom is missing. @ line 49, column 21
- [ERROR]
- [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
- [ERROR] Re-run Maven using the -X switch to enable full debug logging.
- [ERROR]
- [ERROR] For more information about the errors and possible solutions, please read the following articles:
- [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException
- [ERROR] [Help 2] http://cwiki.apache.org/confluence/display/MAVEN/PluginResolutionException
- [ERROR] [Help 3] http://cwiki.apache.org/confluence/display/MAVEN/UnresolvableModelException
- Которые вкратце сообщают о невозможности разрешить зависимости плагина, flex-фраймворка и всего, что с ним связано.
- Проверка репозиториев показывает, что в самом деле, фреймворка с подобными координатами нет.
- Неудача. Генерация через командную строку привела к аналогичному результату.
+IDEA оказывается знает архетип для net.flexmojos.oss v.6.0.0. Стандартная maven-генерация - результат не билдится.
+Получаем 4 ошибки:
+[ERROR]   The project FlexMojosTest:FlexMojosTest:1.0-SNAPSHOT (D:\Projets\FlexMojosTest\pom.xml) has 4 errors
+[ERROR]     Unresolveable build extension: Plugin net.flexmojos.oss:flexmojos-maven-plugin:6.0.0 or one of its dependencies could not be resolved: Failed to collect dependencies for net.flexmojos.oss:flexmojos-maven-plugin:jar:6.0.0 (): Failed to read artifact descriptor for net.flexmojos.oss:flexmojos-maven-plugin:jar:6.0.0: Failure to find com.adobe.flex:framework:pom:4.6.0.23201 in http://repository.sonatype.org/content/groups/flexgroup was cached in the local repository, resolution will not be reattempted until the update interval of flex-mojos-plugin-repository has elapsed or updates are forced -> [Help 2]
+[ERROR]     Unknown packaging: swf @ line 28, column 16
+[ERROR]     Non-resolvable import POM: Failure to find com.adobe.flex:framework:pom:4.6.0.23201 in http://repository.sonatype.org/content/groups/flexgroup was cached in the local repository, resolution will not be reattempted until the update interval of flex-mojos-repository has elapsed or updates are forced @ line 67, column 25 -> [Help 3]
+[ERROR]     'dependencies.dependency.version' for com.adobe.flex.framework:flex-framework:pom is missing. @ line 49, column 21
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException
+[ERROR] [Help 2] http://cwiki.apache.org/confluence/display/MAVEN/PluginResolutionException
+[ERROR] [Help 3] http://cwiki.apache.org/confluence/display/MAVEN/UnresolvableModelException
+Которые вкратце сообщают о невозможности разрешить зависимости плагина, flex-фраймворка и всего, что с ним связано.
+Проверка репозиториев показывает, что в самом деле, фреймворка с подобными координатами нет.
+Неудача. Генерация через командную строку привела к аналогичному результату.
 
+## Попытка номер два.
+Пробую создать аналогичный проект но на основе описания от Adobe. Там используется более ранняя версия
+плагина org.sonatype.flexmojos v.4.0-RC2.
+По большому счету, большой разницы в сообщениях об ошибках нет, снова не найдены зависимости для плагина.
 
 ## Ресурсы.
 - [Самая старая версия из найденных. Последнее обновление - февраль 2009](http://code.google.com/p/flex-mojos/)
