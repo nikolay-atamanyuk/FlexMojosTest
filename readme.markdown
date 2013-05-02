@@ -3,7 +3,7 @@
 при помощи плагина flexmojos.
 
 ## Попытка номер раз: net.flexmojos.oss v.6.0.0
-IDEA оказывается знает архетип для net.flexmojos.oss v.6.0.0. Стандартная maven-генерация - результат не билдится.
+IDEA оказывается знает архетип для net.flexmojos.oss v.6.0.0. Стандартная maven-генерация - clean compile - Fail.
 Получаем 4 ошибки:
 [ERROR]   The project FlexMojosTest:FlexMojosTest:1.0-SNAPSHOT (D:\Projets\FlexMojosTest\pom.xml) has 4 errors
 [ERROR]     Unresolveable build extension: Plugin net.flexmojos.oss:flexmojos-maven-plugin:6.0.0 or one of its dependencies could not be resolved: Failed to collect dependencies for net.flexmojos.oss:flexmojos-maven-plugin:jar:6.0.0 (): Failed to read artifact descriptor for net.flexmojos.oss:flexmojos-maven-plugin:jar:6.0.0: Failure to find com.adobe.flex:framework:pom:4.6.0.23201 in http://repository.sonatype.org/content/groups/flexgroup was cached in the local repository, resolution will not be reattempted until the update interval of flex-mojos-plugin-repository has elapsed or updates are forced -> [Help 2]
@@ -26,6 +26,11 @@ IDEA оказывается знает архетип для net.flexmojos.oss v
 Пробую создать аналогичный проект но на основе описания от Adobe. Там используется более ранняя версия
 плагина org.sonatype.flexmojos v.4.0-RC2.
 По большому счету, большой разницы в сообщениях об ошибках нет, снова не найдены зависимости для плагина.
+
+## Попытка номер три.
+При просмотре репозитория из пома, нахожу последнюю версию этого плагина и пробую еще раз с нуля повторить. Как ни странно,
+но это нехитрое действие приносит свои плоды и компиляция проходит успешно! Это первая удачная попытка без особых плясок
+с бубном.
 
 ## Ресурсы.
 - [Самая старая версия из найденных. Последнее обновление - февраль 2009](http://code.google.com/p/flex-mojos/)
