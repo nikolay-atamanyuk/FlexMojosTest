@@ -26,10 +26,22 @@
                 <artifactId>flexmojos-maven-plugin</artifactId>
                 <version>4.2-beta</version>
                 <extensions>true</extensions>
+
                 <configuration>
-                    <debug>true</debug>
-                    <sourceFile>Main.as3</sourceFile>
+                    <debug>false</debug>
+                    <as3>true</as3>
+                    <sourceFile>Main.as</sourceFile>
+                    <optimize>true</optimize>
                 </configuration>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>optimize-swf</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
                 <dependencies>
                     <dependency>
                         <groupId>com.adobe.flex</groupId>
