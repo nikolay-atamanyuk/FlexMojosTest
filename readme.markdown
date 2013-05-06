@@ -5,19 +5,21 @@
 ## Попытка номер раз: net.flexmojos.oss v.6.0.0
 IDEA оказывается знает архетип для net.flexmojos.oss v.6.0.0. Стандартная maven-генерация - clean compile - Fail.
 Получаем 4 ошибки:
-[ERROR]   The project FlexMojosTest:FlexMojosTest:1.0-SNAPSHOT (D:\Projets\FlexMojosTest\pom.xml) has 4 errors
-[ERROR]     Unresolveable build extension: Plugin net.flexmojos.oss:flexmojos-maven-plugin:6.0.0 or one of its dependencies could not be resolved: Failed to collect dependencies for net.flexmojos.oss:flexmojos-maven-plugin:jar:6.0.0 (): Failed to read artifact descriptor for net.flexmojos.oss:flexmojos-maven-plugin:jar:6.0.0: Failure to find com.adobe.flex:framework:pom:4.6.0.23201 in http://repository.sonatype.org/content/groups/flexgroup was cached in the local repository, resolution will not be reattempted until the update interval of flex-mojos-plugin-repository has elapsed or updates are forced -> [Help 2]
-[ERROR]     Unknown packaging: swf @ line 28, column 16
-[ERROR]     Non-resolvable import POM: Failure to find com.adobe.flex:framework:pom:4.6.0.23201 in http://repository.sonatype.org/content/groups/flexgroup was cached in the local repository, resolution will not be reattempted until the update interval of flex-mojos-repository has elapsed or updates are forced @ line 67, column 25 -> [Help 3]
-[ERROR]     'dependencies.dependency.version' for com.adobe.flex.framework:flex-framework:pom is missing. @ line 49, column 21
-[ERROR]
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR]
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException
-[ERROR] [Help 2] http://cwiki.apache.org/confluence/display/MAVEN/PluginResolutionException
-[ERROR] [Help 3] http://cwiki.apache.org/confluence/display/MAVEN/UnresolvableModelException
+
+    [ERROR]   The project FlexMojosTest:FlexMojosTest:1.0-SNAPSHOT (D:\Projets\FlexMojosTest\pom.xml) has 4 errors
+    [ERROR]     Unresolveable build extension: Plugin net.flexmojos.oss:flexmojos-maven-plugin:6.0.0 or one of its dependencies could not be resolved: Failed to collect dependencies for net.flexmojos.oss:flexmojos-maven-plugin:jar:6.0.0 (): Failed to read artifact descriptor for net.flexmojos.oss:flexmojos-maven-plugin:jar:6.0.0: Failure to find com.adobe.flex:framework:pom:4.6.0.23201 in http://repository.sonatype.org/content/groups/flexgroup was cached in the local repository, resolution will not be reattempted until the update interval of flex-mojos-plugin-repository has elapsed or updates are forced -> [Help 2]
+    [ERROR]     Unknown packaging: swf @ line 28, column 16
+    [ERROR]     Non-resolvable import POM: Failure to find com.adobe.flex:framework:pom:4.6.0.23201 in http://repository.sonatype.org/content/groups/flexgroup was cached in the local repository, resolution will not be reattempted until the update interval of flex-mojos-repository has elapsed or updates are forced @ line 67, column 25 -> [Help 3]
+    [ERROR]     'dependencies.dependency.version' for com.adobe.flex.framework:flex-framework:pom is missing. @ line 49, column 21
+    [ERROR]
+    [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+    [ERROR] Re-run Maven using the -X switch to enable full debug logging.
+    [ERROR]
+    [ERROR] For more information about the errors and possible solutions, please read the following articles:
+    [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException
+    [ERROR] [Help 2] http://cwiki.apache.org/confluence/display/MAVEN/PluginResolutionException
+    [ERROR] [Help 3] http://cwiki.apache.org/confluence/display/MAVEN/UnresolvableModelException
+
 Которые вкратце сообщают о невозможности разрешить зависимости плагина, flex-фраймворка и всего, что с ним связано.
 Проверка репозиториев показывает, что в самом деле, фреймворка с подобными координатами нет.
 Неудача. Генерация через командную строку привела к аналогичному результату.
@@ -47,7 +49,7 @@ mvn clean test - Fail.
 Способов два, это добавить путь в системеную переменную PATH, или воспользоваться тайным свойством, который подхватит
 плагин. Мне ближе второе. Пробуем, добавляем переменную с абсолютным путем к дебажному плейеру и получаем ошибку:
 
-[ERROR] Failed to execute goal org.sonatype.flexmojos:flexmojos-maven-plugin:4.2-beta:test-run (default-test-run) on project FlexMojosTest: Invalid state: the flashplayer is closed, but the sockets still running...
+    [ERROR] Failed to execute goal org.sonatype.flexmojos:flexmojos-maven-plugin:4.2-beta:test-run (default-test-run) on project FlexMojosTest: Invalid state: the flashplayer is closed, but the sockets still running...
 
 Это явно прогресс, но не самый лучший его вариант...
 При этом это ошибка именно плагина, потому как запуск этого теста через IDEA проходит успешно, что не может не радовать,
@@ -70,8 +72,8 @@ mxml > as3. В конфигурации плагина имеет смысл у�
 это аналог качества jpeg.
 
 **Заметка** К сожалению, так и не удалось перейти на последние версии плагина (net.flexmojos.oss), для 5 версии
-не работает юнит тестирование, а для 6 не наден компилятор в репозитории (правда есть тулза, котороя вроде как
-позволяет мавенизировать любой flex-sdk). Но даже с данным фукнционалом уже очень не плохо.
+не работает юнит тестирование, а для 6 не наден компилятор в репозитории (правда есть [тулза](https://git-wip-us.apache.org/repos/asf/flex-utilities.git),
+котороя вроде как позволяет мавенизировать любой flex-sdk ). Но даже с данным фукнционалом уже очень не плохо.
 
 ## Работа с fla-ресурсами.
 Разрешение зависимостей, это один из очень больших плюсов maven, когда они доступны в публичных репозиториях и проблема,
@@ -93,6 +95,40 @@ maven-репозитории, тогда это не нарушит идеоло
 выбор каждого. Если количество работающих с fla одновременно 1, то можно попробовать съекономить на контроле версий и использовать
 xfl. Правда не думаю, что выгода будет сильно большая.
 
+## FlexPDM
+Закончить хотелось бы плагином для определения качества кода. Нашел его случайно, когда искал возможность компиляции
+fla-файлов. FlexPDM - это opensource от Adobe, который базируется на аналогичном java плагине. Документация оставляет
+желать лучшего, вики не дописана и разбросана по проекту. Но найти страницу с использованием оказалось возможным. Также
+находил отзывы и примеры применения в реальных проектах. Как водится, взял последнюю версию (1.2) плагина из адобовского репозитория
+mvn site
+
+    [INFO] ------------------------------------------------------------------------
+    [ERROR] Failed to execute goal org.apache.maven.plugins:maven-site-plugin:3.0:site (default-site) on project FlexMojosTest: Execution default-site of goal org.apache.maven.plugins:maven-site-plugin:3.0:site failed: An API incompatibility was encountered while executing org.apache.maven.plugins:maven-site-plugin:3.0:site: java.lang.AbstractMethodError: com.adobe.ac.pmd.maven.FlexPmdReportMojo.canGenerateReport()Z
+
+Вот такая неприятность. Небольшой поиск показал, что этот плагин в последней версии не работоспособен. Пробуем откатиться
+на несколько версий назад. В целом это логично и объяснение есть [здесь](http://sourceforge.net/adobe/flexpmd/tickets/2/).
+Еще немного порывшись в гугле, нашел репопозиторий Alex Manarpies, в котором тоже есть версия 1.2 плагина. Зачищаю локальный,
+меняю реп - mvn site
+
+    [ERROR] Failed to execute goal org.apache.maven.plugins:maven-site-plugin:3.0:site (default-site) on project FlexMojosTest: failed to get report for com.adobe.ac:flex-pmd-maven-plugin: Plugin com.adobe.ac:flex-pmd-maven-plugin:1.2 or one of its dependencies could not be resolved: Failed to read artifact descriptor for com.adobe.ac:flex-pmd-maven-plugin:jar:1.2: Could not transfer artifact com.adobe.ac:flex-pmd-maven-plugin:pom:1.2 from/to flexpmd.opensource.adobe (http://code.google.com/p/flex-maven-repo/source/browse/): Checksum validation failed, expected <!DOCTYPE but is d3ea07a9bcf449ba69929ed4b6c01bdf7b1b9b6d -> [Help 1]
+
+Скачивание не удалось.
+Последняя попытка работы со снапшотом плагина для версии 1.3 также не удалась.
+
+    [ERROR] Failed to execute goal org.apache.maven.plugins:maven-site-plugin:3.0:site (default-site) on project FlexMojosTest: failed to get report for com.adobe.ac:flex-pmd-maven-plugin: Plugin com.adobe.ac:flex-pmd-maven-plugin:1.3-SNAPSHOT or one of its dependencies could not be resolved: Failed to read artifact descriptor for com.adobe.ac:flex-pmd-maven-plugin:jar:1.3-SNAPSHOT: Failure to find com.adobe.ac:flex-pmd:pom:1.3-SNAPSHOT in http://repository.sonatype.org/content/groups/flexgroup was cached in the local repository, resolution will not be reattempted until the update interval of flex-mojos-plugin-repository has elapsed or updates are forced -> [Help 1]
+
+Однако, радует, что какая-то работа видимо ведется. Или велась.
+Однако, кроме мавена, этот проект работает:
+[Любителям flashdevelop](http://www.swfgeek.net/2009/09/18/using-flex-pmd-in-flashdevelop-3/)
+[Jenkins+Ant - пример сборки](http://vapes.na.by/blog/index.php?entry=C%EE%E1%E8%F0%E0%E5%EC-Flex-%EF%F0%EE%E5%EA%F2-%F1-%EF%EE%EC%EE%F9%FC%FE-ANT)
+
+## Вместо заключения
+Собитать flex проекты мавеном можно, особенно если это проекты модульные и команда большая. Очень желательно иметь
+свой репозиторий, с которым будет работать команда. Если проект гетерогенный, особенно с java бэк-ендом, то сборка будет
+еще лучше. Но для небольших распределенных команд, проектов игростроя, где много работы дизайнера, настройка проекта
+не настолько проста, как бы хотелось. Проблема кроется в одной из сильных частей maven - разрешение зависимостей. Репозиториев,
+точнее артифактов в них, пока не много и они не согласованы. Maven пока еще не очень популярен в среде flex/flash (особенно)
+разработчиков. А ведь жаль, чертовски удобная штука.
 
 ## Ресурсы.
 ### FlexMojos.
@@ -114,9 +150,18 @@ xfl. Правда не думаю, что выгода будет сильно �
 - [Документация по версии 4.0](http://repository.sonatype.org/content/sites/flexmojos-site/4.0-SNAPSHOT/project-info.html)
 - [Параметы конфигурации для версии 4.0](http://repository.sonatype.org/content/sites/flexmojos-site/4.0-SNAPSHOT/configurator-mojo.html)
 
+- [Appach flex wiki - maven plugin](https://cwiki.apache.org/confluence/display/FLEX/Maven+Plugin)
+
 ### FLA/XFL
 - [XFL и контроль версий. Проблемы.](http://forums.adobe.com/message/4037392)
 - [Ant tasks для сборки проекта с использованием Flash CS](http://code.google.com/p/flashanttasks/) 2009 год
 - [Ant task для работы с ресурсами, без их компиляции](https://bitbucket.org/andkrup/a3tasks) 2012 год
 
 - [Mike Chambers flashcommand - фактически генератор jsfl-скрипта](http://code.google.com/p/flashcommand/source/browse/trunk/osx/src/flashcommand)
+
+### FlexPDM
+- [Adobe cookbook](http://cookbooks.adobe.com/post_Invoke_FlexPMD_with_Maven_on_build_Flex_projects-16066.html)
+- [Wiki - how to invoke FlexPDM](http://sourceforge.net/adobe/flexpmd/wiki/How%20to%20invoke%20FlexPMD/)
+- [FlexPDM maven plugin broken](http://forums.adobe.com/thread/907124)
+
+- [Alex Manarpies repository](http://code.google.com/p/flex-maven-repo/)

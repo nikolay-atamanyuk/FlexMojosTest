@@ -14,7 +14,8 @@
     <properties>
         <flex.sdk.version>4.6.b.23201</flex.sdk.version>
         <!-- Point to standalone flashplayer -->
-        <flex.flashPlayer.command>c:\Program Files\Adobe\Flash Player\Debug\flashplayer_11_sa_debug.exe</flex.flashPlayer.command>
+        <flex.flashPlayer.command>c:\Program Files\Adobe\Flash Player\Debug\flashplayer_11_sa_debug.exe
+        </flex.flashPlayer.command>
     </properties>
 
     <build>
@@ -54,6 +55,16 @@
         </plugins>
     </build>
 
+    <!--<reporting>-->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>com.adobe.ac</groupId>-->
+                <!--<artifactId>flex-pmd-maven-plugin</artifactId>-->
+                <!--<version>1.2</version>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</reporting>-->
+
     <dependencies>
         <dependency>
             <groupId>com.adobe.flex.framework</groupId>
@@ -87,5 +98,29 @@
             <id>flex-mojos-plugin-repository</id>
             <url>http://repository.sonatype.org/content/groups/flexgroup</url>
         </pluginRepository>
+
+        <!--<pluginRepository>-->
+            <!--<id>flexpmd.opensource.adobe.realise</id>-->
+            <!--<releases>-->
+                <!--<enabled>true</enabled>-->
+            <!--</releases>-->
+            <!--<snapshots>-->
+                <!--<enabled>false</enabled>-->
+            <!--</snapshots>-->
+
+            <!--<url>http://opensource.adobe.com/svn/opensource/flexpmd/maven-repository/release/</url>-->
+        <!--</pluginRepository>-->
+
+        <!--<pluginRepository>-->
+            <!--<id>flexpmd.opensource.adobe.snapshots</id>-->
+            <!--<releases>-->
+                <!--<enabled>false</enabled>-->
+            <!--</releases>-->
+            <!--<snapshots>-->
+                <!--<enabled>true</enabled>-->
+            <!--</snapshots>-->
+
+            <!--<url>http://opensource.adobe.com/svn/opensource/flexpmd/maven-repository/snapshot/</url>-->
+        <!--</pluginRepository>-->
     </pluginRepositories>
 </project>

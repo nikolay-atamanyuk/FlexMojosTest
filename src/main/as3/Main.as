@@ -2,7 +2,7 @@ package {
 import flash.display.Sprite;
 import flash.events.Event;
 
-[SWF(backgroundColor="#869ca7", frameRate="30", width="600", height="800")]
+[SWF(backgroundColor="#869ca7", frameRate="30", width="800", height="600")]
 public class Main extends Sprite {
     public function Main() {
         if (stage) init();
